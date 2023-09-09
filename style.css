@@ -1,0 +1,204 @@
+:root {
+    --background: #6e5c62;
+    --default-font: 'Lilita One', cursive;
+
+}
+
+html {
+    font-family: var(--default-font);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--background);
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+    margin: 0 auto;
+}
+
+h1 {
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: .25em;
+    margin: 0 auto;
+}
+
+.board {
+    display: grid;
+    gap: .25rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.board.--shake {
+    animation: shake 0.5s;
+}
+
+.board__line {
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    justify-content: center;
+}
+
+.board__line.--current .board__word {
+    border: 3px solid #4C4347;
+}
+
+.board__line.--current .board__word.--current {
+    border-bottom: 5px solid black;
+}
+
+.board__word {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+
+    padding: .5rem;
+    font-size: 1.85rem;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: var(--color, #615458);
+    text-align: center;
+    color: white;
+}
+
+.board__word.--flip {
+    animation: flip 0.45s linear 0s forwards;
+}
+
+.board__word.--right {
+    --color: #3aa394;
+}
+
+.board__word.--place {
+    --color: #d3ad69;
+}
+
+.board__word.--wrong {
+    --color: #312a2c;
+}
+
+.board__word.--current {
+    --color: 5px;
+}
+
+.keyboard {
+    display: grid;
+    height: 100%;
+    gap: .25rem;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(32, 1fr);
+    max-width: 500px;
+    max-height: 200px;
+}
+
+.keyboard button {
+    font-family: var(--default-font);
+    touch-action: manipulation;
+    border: none;
+    border-radius: 4px;
+    grid-column: span 3;
+    color: white;
+    background-color: #4C4347;
+    outline: none;
+    font-size: 1.25rem;
+    line-height: 250%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyboard button.--right {
+   background-color: #3aa394; 
+}
+
+.keyboard button.--place {
+    background-color: #d3ad69;
+}
+
+.keyboard button.--wrong {
+    background-color: #312a2c;
+}
+
+.keyboard [data-letter="A"] {
+    grid-column: 2/ span 3;
+}
+
+.keyboard [data-letter="Z"] {
+    grid-column: 3/ span 3;
+}
+
+.keyboard [data-letter="ENTER"] {
+    grid-column: 25 / span 10;
+}
+
+.keyboard [data-letter="BACKSPACE"]{
+    font-size: 2rem;
+    line-height: 150%;
+    font-weight: bold;
+    grid-column: 29 / span 5;
+    grid-row: 2/2;
+}
+
+@keyframes flip {
+  0% {
+    background-color: #806971;
+    border: 0.125em solid #4C4347;
+    transform: perspective(200px) rotateY(0deg);
+  }
+
+  49.99999% {
+    background-color: #806971;
+    border: 0.125em solid #4C4347;
+    transform: perspective(200px) rotateY(90deg);
+  }
+
+  50% {
+    transform: perspective(200px) rotateY(-90deg);
+    background-color: var(--color);
+    border: none;
+  }
+
+  50.00001% {
+    background-color: var(--color);
+    border: none;
+  }
+
+  100% {
+    transform: perspective(200px) rotateY(0deg);
+    background-color: var(--color);
+  }
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
