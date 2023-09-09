@@ -36,6 +36,16 @@ export default class Game {
         this.build_board()
         this.build_keyboard()
         this.listen_to_keyboard()
+        this.setup_word()
+    }
+
+    setup_word() {
+        const url = new URL(window.location.href)
+        const word = url.searchParams.get('word')
+
+        if (!word) return
+
+        this.change_word(word)
     }
 
 
@@ -155,9 +165,6 @@ export default class Game {
 
     handle_maximum_attempt() {
         this.#board.classList.add('--shake')
-    }
-
-    configure_conffetti() {
     }
 
     setup_confetti() {
