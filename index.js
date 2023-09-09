@@ -5,13 +5,20 @@ export default class Game {
 
     #board = document.querySelector('.board')
     #lines = []
-    #pieces
+    #pieces = []
+
     #word = "REGUA"
     #word_as_array = this.#word.split("")
-    #won = false
+
     #attempts = 0
     #currentRow = 0
     #currentColumn = 0
+    #won = false
+
+    #modal = document.querySelector('.modal')
+    #modal_btn = document.querySelector('.modal button')
+
+    #confetti = new JSConfetti()
 
     static STATUS = {
         RIGHT: '--right',
@@ -30,6 +37,7 @@ export default class Game {
         this.build_keyboard()
         this.listen_to_keyboard()
     }
+
 
     validate(guess) {
         let word = [...this.#word_as_array]
@@ -84,12 +92,20 @@ export default class Game {
     }
 
     handle_remove_letter() {
+        const currentPiece = this.get_current_piece()
+
+        if (this.#currentColumn === Game.MAX_COLUMN_INDEX && currentPiece.textContent !== '') {
+            currentPiece.textContent = ''
+
+            return
+        }
+
+
+        this.#currentColumn = Math.max(this.#currentColumn - 1, Game.MIN_COLUMN_INDEX)
 
         const piece = this.get_current_piece()
 
         piece.textContent = ''
-
-        this.#currentColumn = Math.max(this.#currentColumn - 1, Game.MIN_COLUMN_INDEX)
 
         this.change_current_piece()
     }
@@ -129,7 +145,7 @@ export default class Game {
             return this.handle_won_game()
         }
 
-        if (this.#attempts > 5) {
+        if (this.#attempts >= 5) {
             return this.handle_maximum_attempt()
         }
 
@@ -137,17 +153,35 @@ export default class Game {
         this.change_row()
     }
 
-    get board() {
-        return this.#board
+    handle_maximum_attempt() {
+        this.#board.classList.add('--shake')
     }
 
     configure_conffetti() {
-        new JSConfetti().addConfetti()
+    }
+
+    setup_confetti() {
+        const confetti = new Confetti('birthday')
+        confetti.setCount(75);
+        confetti.setSize(1);
+        confetti.setPower(25);
+        confetti.setFade(false);
+        confetti.destroyTarget(false);
+    }
+
+    setup_modal() {
+        this.#modal.classList.remove('--hidden')
+
+        this.#modal_btn.addEventListener('click', () => {
+            this.#modal.classList.add('--hidden')
+            this.setup_confetti()
+        })
     }
 
     handle_won_game() {
-        this.configure_conffetti()
-        this.#board.click()
+        this.#confetti
+            .addConfetti()
+            .then(() => this.setup_modal())
     }
 
     change_row() {

@@ -10,10 +10,42 @@
     <link rel="stylesheet" href="style.css">
     <title>Term.ozi</title>
 </head>
-<body>
+<body id="birthday">
     <h1>Term.ozi ❤️‍🔥</h1>
     <main class="board" id="game"></main>
     <div class="keyboard"></div>
+    <div class="modal --hidden">
+        <section class="modal__content">
+            <div class="modal__title-container">
+                <h1 class="modal__title">Feliz Aniversário</h1>
+                <h1 class="modal__title">Mozi ❤️‍🔥💘</h1>
+            </div>
+
+            <div class="modal__description-container">
+                <p class="modal__description">
+                    Agora podemos dizer que já foi <strong> regua</strong> ?
+                </p>
+                <p class="modal__description">
+                    Muita saúde, paz, felicidades e que todos seus desejos
+                    se tornem realidade
+                </p>
+                <p class="modal__description">
+                    Tenho muito orgulho de ti, e sempre estarei aqui para te apoiar 💘❤️‍🔥
+                </p>
+                <p class="modal__description">
+                    Te amo muitoooo minha princesa 💘❤️‍🔥
+                </p>
+                <p class="modal__description">
+                    Agora pode brincar com os confettis 💫💥
+                </p>
+            </div>
+            <button class="modal__btn">
+                Fechar
+            </button>
+        </section>
+
+    </div>
+    <script src="./confetti.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <script type="module">
         import Game from './index.js'

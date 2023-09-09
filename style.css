@@ -20,7 +20,7 @@ html, body {
 
 body {
     background: var(--background);
-    padding: 4rem 2rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,6 +107,7 @@ h1 {
     gap: .25rem;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(32, 1fr);
+    width: 100%;
     max-width: 500px;
     max-height: 200px;
 }
@@ -125,6 +126,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 .5rem;
 }
 
 .keyboard button.--right {
@@ -157,6 +159,67 @@ h1 {
     font-weight: bold;
     grid-column: 29 / span 5;
     grid-row: 2/2;
+}
+
+
+.modal {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.8);
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.--hidden {
+    display: none;
+}
+
+.modal__content {
+    padding: 2rem;
+    border-radius: 4px;
+    background-color: var(--background);
+    height: 500px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal__title {
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.modal__description {
+    color: white;
+    font-size: 1rem;
+    line-height: 150%;
+}
+
+.modal__description strong {
+    background-color: #3aa394;
+    border-radius: 4px;
+    padding: .25rem;
+    margin: 0 .25rem;
+    color: white;
+    font-weight: 400;
+}
+
+.modal__btn {
+    font-family: var(--default-font);
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    line-height: 150%;
+    border: unset;
+    border-radius: 4px;
+    background-color: #3aa394;
+    color: white;
+    display: block;
+    width: 100%;
 }
 
 @keyframes flip {
