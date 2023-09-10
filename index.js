@@ -139,10 +139,10 @@ export default class Game {
 
                 if (!button.classList.contains('--validate')) {
                     button.classList.add("--validate", status)
-                }
 
-                if (status === Game.STATUS.WRONG) {
-                    button.setAttribute('disabled', 'disabled')
+                    if (status === Game.STATUS.WRONG) {
+                        button.setAttribute('disabled', 'disabled')
+                    }
                 }
 
                 piece.setAttribute('disabled', 'disabled')
