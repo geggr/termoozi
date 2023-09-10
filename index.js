@@ -136,7 +136,10 @@ export default class Game {
                 const piece = this.piece_at(index)
                 const button = document.querySelector(`[data-letter="${letter}"]`)
 
-                button.classList.add(status)
+
+                if (!button.classList.contains('--validate')) {
+                    button.classList.add("--validate", status)
+                }
 
                 if (status === Game.STATUS.WRONG) {
                     button.setAttribute('disabled', 'disabled')
@@ -183,6 +186,8 @@ export default class Game {
             this.#modal.classList.add('--hidden')
             this.setup_confetti()
         })
+
+        this.#modal_btn.focus()
     }
 
     handle_won_game() {

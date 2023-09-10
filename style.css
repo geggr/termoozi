@@ -164,7 +164,7 @@ h1 {
 
 .modal {
     position: absolute;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.8);
     inset: 0;
@@ -183,6 +183,7 @@ h1 {
     border-radius: 4px;
     background-color: var(--background);
     width: 80%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
